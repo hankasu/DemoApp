@@ -1,48 +1,43 @@
-'use strict';
+﻿'use strict';
 
-eventsApp.factory('eventData', function (eventResource, authService) {
-    return {
-        getEvent: function(eventId, callback) {
-            return eventResource.get({id:eventId}, function(event) {
-                if (callback)
-                    callback(event);
-            });
+eventsApp.factory('eventData', function () {
+  return {
+    event: {
+      name: 'Angular Boot Camp',
+      eventDate: '1/1/2015',
+      eventTime: '10:30 am',
+      location: {
+        address: '10 Google Drive',
+        city: 'Mountain View',
+        state: 'California'
+      },
+      imgPath: '/img/angularjs-large.png',
+      sessions: [
+        {
+          name: 'Directives Masterclass',
+          creatorName: 'Bob Smith',
+          duration: 1,
+          level: 'Advanced',
+          abstract: 'In this session you will learn the ins and outs of directives!',
+          upVoteCount: 0
         },
-        getAllEvents: function(callback) {
-            return eventResource.queryAll(callback);
+        {
+          name: 'Scopes for fun and profit',
+          creatorName: 'John doe',
+          duration: 2,
+          level: 'Introductory',
+          abstract: 'This session will take a closer look at scopes. Learn what the do',
+          upVoteCount: 3
         },
-        getNextSessionId:function (event) {
-            var max = 0;
-            for (var idx = 0; idx < event.sessions.length; idx++) {
-                if (event.sessions[idx].id > max) {
-                    max = event.sessions[idx].id;
-                }
-            }
-            return max+1;
-        },
-        save: function(event, callback) {
-            if (event.id) {
-                eventResource.save(event, function() { if (callback) callback(); });
-            } else {
-                eventResource.queryAll(function(events) {
-                    event.creator = authService.getCurrentUserName();
-                    event.id = getNextEventId(events);
-                    event.sessions = [];
-                    eventResource.save(event);
-                    if (callback)
-                        callback();
-                });
-            }
+        {
+          name: 'Well Behaved Controllers',
+          creatorName: 'Jane Doe',
+          duration: 4,
+          level: 'Intermediate',
+          abstract: 'Controllers are the beginning of everything Angular Does. Learn how to craft controllers that work.',
+          upVoteCount: 0
         }
-    };
-
-    function getNextEventId(events) {
-        var max = 0;
-        for (var idx = 0; idx < events.length; idx++) {
-            if (events[idx].id > max) {
-                max = events[idx].id;
-            }
-        }
-        return max+1;
+      ]
     }
+  };
 });
