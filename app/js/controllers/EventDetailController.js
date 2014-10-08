@@ -1,15 +1,18 @@
 ﻿'use strict';
 
 eventsApp.controller('EventDetailController', function ($scope, eventData) {
-  $scope.snippit = '<span style="color:red">hi there</span>';
+
   $scope.sortorder = 'name';
-  $scope.event = eventData.event;
+  eventData.getEvent().then(
+    function (event) { $scope.event = event; },
+    function (statusCode) { console.log(statusCode); }
+  );
 
   $scope.upVoteSession = function (session) {
     session.upVoteCount++;
-  }
+  };
 
   $scope.downVoteSession = function (session) {
     session.upVoteCount--;
-  }
+  };
 });
