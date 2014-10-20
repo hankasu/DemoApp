@@ -3,15 +3,15 @@
     <h2>New Event</h2>
     <form name="newEventForm">
       <fieldset>
-        <label for="eventName">Event Name:</label>
-        <input id="eventName" type="text" required ng-model="event.name" placeholder="Name of your event..." />
-        <label for="eventDate">Event Date:</label>
-        <input id="eventDate" type="text" required ng-pattern="/\d\d/\d\d/\d\d\d\d/" ng-model="event.date" placeholder="format (mm/dd/yyyy)" />
+        <label for="name">Event Name:</label>
+        <input id="name" type="text" required ng-model="event.name" placeholder="Name of your event..." />
+        <label for="date">Event Date:</label>
+        <input id="date" type="text" date-keys required ng-pattern="/\d\d/\d\d/\d\d\d\d/" ng-model="event.date" placeholder="format (mm/dd/yyyy)" />
         <span class="error" ng-show="newEventForm.$error.pattern">Must be in mm/dd/yyyy format</span>
-        <label for="eventTime">Event Time:</label>
-        <input id="eventTime" type="text" ng-model="event.time" placeholder="start and end time..." />
-        <label for="eventLocation">Location:</label>
-        <input id="eventLocation" type="text" ng-model="event.location.address" placeholder="Address of event" />
+        <label for="time">Event Time:</label>
+        <input id="time" type="text" ng-model="event.time" placeholder="start and end time..." />
+        <label for="location">Location:</label>
+        <input id="location" type="text" ng-model="event.location.address" placeholder="Address of event" />
         <br />
         <input type="text" id="eventCity" ng-model="event.location.city" class="input-small" placeholder="city..." />
         <input type="text" id="eventState" ng-model="event.location.state" class="input-small" placeholder="State..." />
